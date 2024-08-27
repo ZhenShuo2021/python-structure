@@ -8,17 +8,17 @@
 4. 有架構後如何正確 import
 
 
-## 什麼是 \_\_name\_\_ == "\_\_main\_\_"   
+# 什麼是 \_\_name\_\_ == "\_\_main\_\_"   
 ***避免特定程式在 import 時被執行。***   
 
 就一句話！！！到底為什麼可以寫成一整篇文章，有夠白癡。  
 詳細原因：為了避免特定程式在 import 時被執行，Python 執行時會為每個文件建立 `__name__` 屬性，當文件是頂層腳本直接執行時被設定為`"__main__"`，其餘則為模組的名稱，以此區別主程式和被引入的程式。
 
-整個解釋就五句話
+整個解釋就五句話。
 
 延伸閱讀：`Python 執行時` 這句話也太攏統了吧，看[Python 到底怎麼被執行？](https://medium.com/citycoddee/python%E9%80%B2%E9%9A%8E%E6%8A%80%E5%B7%A7-5-python-%E5%88%B0%E5%BA%95%E6%80%8E%E9%BA%BC%E8%A2%AB%E5%9F%B7%E8%A1%8C-%E7%9B%B4%E8%AD%AF-%E7%B7%A8%E8%AD%AF-%E5%AD%97%E7%AF%80%E7%A2%BC-%E8%99%9B%E6%93%AC%E6%A9%9F%E7%9C%8B%E4%B8%8D%E6%87%82-553182101653)
 
-## 如何命名變數
+# 如何命名變數
 請參照[码农高天](https://www.youtube.com/watch?v=x6I8x-40w6k)的影片，說的非常好，這裡簡單整理摘錄。  
 
 > 學習標準變數命名方式可以一眼看出變數的類型，增加資訊密度。
@@ -39,7 +39,7 @@
 
 以前知道這些但是沒有照做，照做之後真的好讀很多，果然規定要遵守。
 
-## 專案架構
+# 專案架構
 當程式越寫越複雜需要切成多檔案，應該會變成這樣：
 
 ```md
@@ -61,7 +61,7 @@ root/.
     └── test.py              # 測試程式碼 (unittest)
 ```
 
-### 如何 import
+## 如何 import
 分為相對導入和絕對導入，PEP8 建議絕對導入因為更好偵錯。
 ```python
 # 相對導入
@@ -77,18 +77,18 @@ from src.modules.utils import util
 延伸閱讀：[相對導入](https://stackoverflow.com/questions/14132789/relative-imports-for-the-billionth-time)
 
 
-### 如何偵錯
+## 如何偵錯
 建立 [`.vscode/launch.json`](https://stackoverflow.com/a/78060960/26993682) ，然而，此方法我測試無法使用相對引入。
 
 
-### 如何呼叫模組（什麼是 python -m）
-Python 導入 (import) 時根本不知道你的資料夾結構，所以**單獨執行** module2 時不管是相對引入還是絕對引入都會報錯，正確的呼叫方式是`python3 -m xxx` 告訴 Python 把模組當作腳本執行，記得 xxx 沒有 .py。
+## 如何呼叫模組（什麼是 python -m）
+Python 導入 (import) 時根本不知道你的資料夾結構，所以**單獨執行** module2 時不管是相對引入還是絕對引入都會報錯，正確的呼叫方式是`python3 -m module2` 告訴 Python 把模組當作腳本執行。
 
 原理：不重要，你又不會去改[這個](https://a7744hsc.github.io/python/2018/05/03/Run-python-script.html)。
 
 
-### 模組 (Module) 和套件 (Package)
-前面說到  
+## 模組和套件的差異
+關於模組 (Module) 和套件 (Package) 的差異，前面說到  
 
 > 當文件是頂層腳本直接執行時被設定為`"__main__"`，其餘則為模組的名稱    
 
